@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#b7aa9e">
+  <title>A Note of Thanks from Dreame</title>
+  <style>
+    @font-face{font-family:Rany;src:url('./Rany.otf') format('opentype');font-weight:400;font-display:swap}
+    @font-face{font-family:Rany;src:url('./Rany-Medium.otf') format('opentype');font-weight:600;font-display:swap}
+    :root{--bg1:#c9bdb1;--bg2:#b8aa9e;--bg3:#a99a8e;--paper:#f6efe3;--ink:#171514;--wine:#7d2528;--gold:#ad874c}
+    *{box-sizing:border-box}
+    html,body{width:100%;height:100%;margin:0;overflow:hidden}
+    body{font-family:Rany,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 50% 30%,var(--bg1),var(--bg2) 52%,var(--bg3));-webkit-tap-highlight-color:transparent}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .app{position:relative;width:100%;height:100%;isolation:isolate}
+    .app:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,255,255,.12),transparent 42%);pointer-events:none;z-index:0}
+    .screen{position:absolute;inset:0;display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom));opacity:0;visibility:hidden;transform:translateY(12px) scale(.985);filter:blur(4px);transition:opacity .72s cubic-bezier(.22,.75,.2,1),transform .9s cubic-bezier(.22,.75,.2,1),filter .7s ease,visibility 0s linear .9s;z-index:1}
+    .screen.active{opacity:1;visibility:visible;transform:none;filter:none;transition-delay:0s}
+    .boy{position:absolute;left:50%;bottom:0;display:block;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(54,38,26,.18));user-select:none;pointer-events:none}
+    #walk .boy{height:77%;transform:translateX(-50%) scale(.42);transform-origin:50% 100%;animation:walkIn 2.5s cubic-bezier(.2,.72,.2,1) forwards}
+    #present .boy{height:93%;bottom:-4%;transform:translateX(-50%) scale(.9);transform-origin:50% 100%;animation:presentIn 1s cubic-bezier(.2,.75,.2,1) forwards}
+    @keyframes walkIn{0%{transform:translateX(-50%) translateY(38px) scale(.36)}65%{transform:translateX(-50%) translateY(0) scale(.64)}100%{transform:translateX(-50%) scale(.72)}}
+    @keyframes presentIn{from{transform:translateX(-50%) translateY(24px) scale(.82);opacity:.3}to{transform:translateX(-50%) scale(1);opacity:1}}
+    .intro-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#b8aa9e}
+    #introVideoScreen:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 78%,rgba(169,154,142,.16));opacity:0;transition:opacity .7s ease}
+    #introVideoScreen.finishing:after{opacity:1}
+    .intro-start{position:absolute;left:50%;bottom:max(42px,calc(env(safe-area-inset-bottom) + 24px));z-index:3;transform:translateX(-50%);min-width:154px;border:1px solid rgba(255,255,255,.75);border-radius:999px;padding:13px 22px;background:rgba(246,239,228,.88);color:#342d29;font-weight:600;box-shadow:0 10px 30px rgba(40,27,18,.2);backdrop-filter:blur(12px);transition:opacity .4s ease,transform .4s ease}
+    .intro-start.hidden{opacity:0;transform:translateX(-50%) translateY(10px);pointer-events:none}
+    .form-card{width:min(350px,100%);padding:38px 25px 30px;background:rgba(248,241,230,.97);border:1px solid rgba(255,255,255,.62);border-radius:4px;box-shadow:0 22px 60px rgba(50,36,25,.22);text-align:center}
+    .logo{display:block;width:137px;height:auto;margin:0 auto;mix-blend-mode:multiply}
+    .smile{width:50px;height:21px;margin:9px auto 0;border:7px solid var(--gold);border-top:0;border-left-color:transparent;border-right-color:transparent;border-radius:0 0 60px 60px}
+    .form-card h1{font-size:28px;line-height:1.1;margin:27px 0 27px;font-weight:600}
+    .sentence{font-size:17px;line-height:2.2;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 7px}
+    .field{height:37px;border:0;border-bottom:1px solid #8b8077;background:transparent;color:var(--ink);outline:0;text-align:center;padding:4px;font-weight:600;border-radius:0}
+    input.field{width:88px}
+    select.field{width:166px;text-align-last:center;appearance:none;background-image:linear-gradient(45deg,transparent 50%,#413b37 50%),linear-gradient(135deg,#413b37 50%,transparent 50%);background-position:calc(100% - 11px) 17px,calc(100% - 7px) 17px;background-size:4px 4px,4px 4px;background-repeat:no-repeat;padding-right:18px}
+    .open-btn{width:100%;margin-top:28px;border:0;border-radius:999px;background:var(--wine);color:#fff;padding:14px 18px;font-weight:600;font-size:16px;letter-spacing:.02em;box-shadow:0 9px 22px rgba(125,37,40,.2);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease,background .28s ease}
+    .open-btn:hover{transform:translateY(-2px);box-shadow:0 13px 27px rgba(125,37,40,.25)}
+    .open-btn:active{transform:translateY(1px) scale(.985);box-shadow:0 6px 14px rgba(125,37,40,.2)}
+    .music-note{font-size:11px;color:#857970;margin:17px 0 0}
+    .error{min-height:18px;color:var(--wine);font-size:12px;margin:9px 0 -9px}
+    .envelope-stage{position:relative;width:min(94vw,560px);touch-action:none;user-select:none;filter:drop-shadow(0 22px 23px rgba(55,39,27,.2))}
+    .envelope-stage img{display:block;width:100%;height:auto;pointer-events:none}
+    .envelope-open{position:absolute;inset:0;opacity:0;transform:translateY(18px) scale(.955);transition:opacity .62s ease,transform 1.05s cubic-bezier(.16,.86,.18,1)}
+    .envelope-closed{transition:opacity .48s ease,transform .85s cubic-bezier(.16,.86,.18,1)}
+    .envelope-stage.opening .envelope-closed{opacity:0;transform:translateY(18px) scale(.96)}
+    .envelope-stage.opening .envelope-open{opacity:1;transform:translateY(-10px) scale(1.035)}
+    .seal-hit{position:absolute;width:28%;aspect-ratio:1;left:36%;top:34%;border:0;background:transparent;border-radius:50%;touch-action:none;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+    .seal-hit:active{transform:scale(.9)}
+    .hint{position:absolute;left:0;right:0;bottom:-38px;text-align:center;color:#584e47;font-size:13px;letter-spacing:.01em}
+    .letter-shell{width:min(358px,calc(100vw - 26px));height:min(750px,calc(100vh - 28px));position:relative;filter:drop-shadow(0 18px 30px rgba(52,37,26,.25));animation:letterIn 1.05s cubic-bezier(.16,.9,.18,1.08)}
+    @keyframes letterIn{0%{opacity:0;transform:translateY(110px) scale(.66)}72%{opacity:1;transform:translateY(-7px) scale(1.012)}100%{opacity:1;transform:none}}
+    .letter{position:relative;width:100%;height:100%;padding:35px 31px 30px;background:#f5efe4;clip-path:polygon(2% 1%,8% .2%,15% .8%,23% .1%,31% .7%,40% .15%,49% .8%,57% .15%,66% .7%,75% .1%,84% .8%,92% .2%,99% 1.5%,99.2% 9%,98.6% 17%,99.3% 26%,98.7% 35%,99.4% 44%,98.8% 54%,99.3% 64%,98.7% 73%,99.2% 82%,98.5% 91%,97% 99%,90% 99.3%,82% 98.7%,74% 99.4%,65% 98.8%,56% 99.4%,47% 98.7%,38% 99.3%,29% 98.7%,20% 99.4%,11% 98.7%,2% 99%,.5% 92%,1.2% 83%,.5% 74%,1.3% 65%,.6% 56%,1.2% 47%,.5% 38%,1.3% 29%,.6% 20%,1.2% 11%)}
+    .letter:before{content:"";position:absolute;inset:0;opacity:.34;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.36' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.19'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+    .letter:after{content:"";position:absolute;inset:4px;box-shadow:inset 0 0 24px rgba(110,80,45,.1);pointer-events:none}
+    .letter-inner{position:relative;z-index:1;height:100%;overflow:auto;scrollbar-width:none;padding-bottom:10px}
+    .letter-inner::-webkit-scrollbar{display:none}
+    .letter .logo{width:111px}
+    .letter .smile{width:42px;height:17px;border-width:5px;margin-top:7px}
+    .letter h2,.letter-content{font-family:"Courier New",Courier,monospace}
+    .letter h2{font-size:22px;line-height:1.1;margin:21px 0 20px;font-weight:700;letter-spacing:-.035em}
+    .letter-content{font-size:12px;line-height:1.5}
+    .letter-content p{margin:0 0 13px}
+    .signature-logo{display:block;width:82px;height:auto;mix-blend-mode:multiply;margin-top:18px}
+    .close-btn{position:absolute;right:14px;top:13px;z-index:4;width:29px;height:29px;border:1px solid #9f9388;border-radius:50%;background:rgba(245,239,228,.8);color:#655c55;font-family:Rany;font-size:18px;line-height:1}
+    .audio-btn{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));z-index:20;width:40px;height:40px;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(246,239,228,.82);color:#4f4741;box-shadow:0 6px 20px rgba(50,36,25,.16);display:none}
+    .audio-btn.visible{display:grid;place-items:center}
+    [dir="rtl"] .letter-content,[dir="rtl"] h2{text-align:right}
+    @media (max-height:700px){.form-card{transform:scale(.9)}.letter-shell{height:calc(100vh - 18px)}.letter{padding-top:27px}.letter h2{font-size:19px;margin:15px 0}.letter-content{font-size:11px;line-height:1.42}}
+    @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <main class="app" id="app">
+    <section class="screen active" id="introVideoScreen"><video class="intro-video" id="introVideo" playsinline preload="auto"><source src="./dream-boy-intro.mp4" type="video/mp4"></video><button class="intro-start" id="introStart">Tap to enter ♪</button></section>
+    <section class="screen" id="formScreen">
+      <form class="form-card" id="detailsForm">
+        <img class="logo" src="./dreame-wordmark.png" alt="Dreame"><div class="smile"></div>
+        <h1>A note is waiting for you.</h1>
+        <div class="sentence"><span>The letter is for</span><input class="field" id="nameInput" name="name" value="" placeholder="Name" maxlength="36" aria-label="Name"><span>from</span><select class="field" id="marketInput" name="market" aria-label="Market"><option value="" selected disabled>Choose a place</option><option value="india">India</option><option value="turkey">Türkiye</option><option value="uae">UAE</option><option value="brazil">Brasil</option><option value="latam">Colombia</option><option value="latam">Perú</option><option value="latam">Chile</option><option value="latam">México</option><option value="israel">ישראל</option><option value="others">Somewhere on the planet</option></select><span>.</span></div>
+        <p class="error" id="error"></p>
+        <button class="open-btn" type="submit">Open my envelope</button>
+        <p class="music-note">♪ Music begins after you continue</p>
+      </form>
+    </section>
+    <section class="screen" id="envelopeScreen">
+      <div class="envelope-stage" id="envelopeStage">
+        <img class="envelope-closed" src="./dreame-envelope-transparent.png" alt="Closed Dreame envelope">
+        <img class="envelope-open" src="./dreame-envelope-open-transparent.png" alt="Open Dreame envelope">
+        <button class="seal-hit" id="seal" aria-label="Open the wax seal"></button>
+        <div class="hint">Tap or drag the wax seal upward to open</div>
+      </div>
+    </section>
+    <section class="screen" id="letterScreen">
+      <div class="letter-shell"><article class="letter" id="letter" dir="ltr"><button class="close-btn" id="closeLetter" aria-label="Close letter">×</button><div class="letter-inner"><img class="logo" src="./dreame-wordmark.png" alt="Dreame"><div class="smile"></div><h2 id="letterTitle"></h2><div class="letter-content" id="letterContent"></div></div></article></div>
+    </section>
+  </main>
+  <audio id="bgm" src="./dreame-warm-jazz.m4a" preload="auto" loop></audio>
+  <button class="audio-btn" id="audioBtn" aria-label="Mute music">♪</button>
+  <script>
+    const $=s=>document.querySelector(s);
+    const screens=[...document.querySelectorAll('.screen')];
+    const show=id=>{screens.forEach(s=>s.classList.toggle('active',s.id===id));};
+    const translations={
+      en:{dir:'ltr',title:'A Note of Thanks from Dreame',dear:n=>`Dear ${n},`,p:[`Thank you for your trust and support throughout our time together.`,`Your partnership has helped Dreame reach more people and bring smarter, more effortless living to homes around the world.`,`We look forward to continuing this journey together—using technology to create greater comfort, give people more time with those they love, and help them reconnect with themselves.`,`Let’s keep dreaming and shape Dreame’s future together.`]},
+      tr:{dir:'ltr',title:"Dreame'den Bir Teşekkür Notu",dear:n=>`Sevgili ${n},`,p:[`Birlikte geçirdiğimiz süre boyunca bize duyduğunuz güven ve desteğiniz için teşekkür ederiz.`,`İş ortaklığınız, Dreame'in daha fazla insana ulaşmasına ve dünyanın dört bir yanındaki evlere daha akıllı, daha zahmetsiz bir yaşam sunmasına yardımcı oldu.`,`Teknolojiyi daha fazla konfor yaratmak, insanların sevdikleriyle daha fazla zaman geçirmelerini sağlamak ve kendileriyle yeniden bağ kurmalarına yardımcı olmak için kullanarak bu yolculuğa birlikte devam etmeyi sabırsızlıkla bekliyoruz.`,`Hayal etmeye devam edelim ve Dreame'in geleceğini birlikte şekillendirelim.`]},
+      ar:{dir:'rtl',title:'رسالة شكر من Dreame',dear:n=>`عزيزي/عزيزتي ${n}،`,p:[`شكرًا لثقتكم ودعمكم طوال مسيرتنا معًا.`,`لقد ساهمت شراكتكم في مساعدة Dreame على الوصول إلى مزيد من الناس وتقديم حياة أكثر ذكاءً وسهولةً للمنازل حول العالم.`,`نتطلع إلى مواصلة هذه الرحلة معًا، مستخدمين التكنولوجيا لابتكار مزيد من الراحة، ومنح الناس وقتًا أطول مع من يحبون، ومساعدتهم على إعادة التواصل مع ذواتهم.`,`لنواصل الحلم ونصنع مستقبل Dreame معًا.`]},
+      pt:{dir:'ltr',title:'Uma Mensagem de Agradecimento da Dreame',dear:n=>`Prezado(a) ${n},`,p:[`Agradecemos pela sua confiança e pelo seu apoio ao longo da nossa trajetória juntos.`,`Sua parceria ajudou a Dreame a alcançar mais pessoas e a levar uma vida mais inteligente e prática a lares no mundo todo.`,`Esperamos continuar essa jornada juntos, usando a tecnologia para criar mais conforto, proporcionar às pessoas mais tempo com quem amam e ajudá-las a se reconectar consigo mesmas.`,`Vamos continuar sonhando e construir juntos o futuro da Dreame.`]},
+      es:{dir:'ltr',title:'Una Nota de Agradecimiento de Dreame',dear:n=>`Estimado/a ${n}:`,p:[`Gracias por su confianza y apoyo durante el tiempo que hemos compartido.`,`Su colaboración ha ayudado a Dreame a llegar a más personas y a llevar una vida más inteligente y sencilla a hogares de todo el mundo.`,`Esperamos seguir recorriendo este camino juntos, utilizando la tecnología para crear mayor comodidad, brindar a las personas más tiempo con sus seres queridos y ayudarlas a reconectar consigo mismas.`,`Sigamos soñando y construyamos juntos el futuro de Dreame.`]},
+      he:{dir:'rtl',title:'מכתב תודה מ-Dreame',dear:n=>`${n} היקר/ה,`,p:[`תודה על האמון והתמיכה לאורך הדרך המשותפת שלנו.`,`השותפות שלכם סייעה ל-Dreame להגיע ליותר אנשים ולהביא חיים חכמים וקלים יותר לבתים ברחבי העולם.`,`אנו מצפים להמשיך במסע הזה יחד — להשתמש בטכנולוגיה כדי ליצור נוחות רבה יותר, להעניק לאנשים יותר זמן עם יקיריהם ולעזור להם להתחבר מחדש לעצמם.`,`בואו נמשיך לחלום ולעצב יחד את העתיד של Dreame.`]}
+    };
+    const marketLang={india:'en',turkey:'tr',uae:'ar',brazil:'pt',latam:'es',israel:'he',others:'en'};
+    let currentName='',currentMarket='',muted=false,musicStarted=false,fadeTimer;
+    function renderLetter(){const t=translations[marketLang[currentMarket]];const letter=$('#letter');letter.dir=t.dir;$('#letterTitle').textContent=t.title;const content=$('#letterContent');content.innerHTML='';[t.dear(currentName),...t.p].forEach(text=>{const p=document.createElement('p');p.textContent=text;content.appendChild(p)});const logo=document.createElement('img');logo.className='signature-logo';logo.src='./dreame-wordmark.png';logo.alt='Dreame';content.appendChild(logo)}
+    const bgm=$('#bgm');
+    function startMusic(){if(musicStarted)return;musicStarted=true;clearInterval(fadeTimer);bgm.currentTime=0;bgm.volume=0;bgm.play().then(()=>{let v=0;fadeTimer=setInterval(()=>{v=Math.min(.34,v+.025);bgm.volume=muted?0:v;if(v>=.34)clearInterval(fadeTimer)},70);$('#audioBtn').classList.add('visible')}).catch(()=>{$('#audioBtn').classList.add('visible');$('#audioBtn').textContent='▶'})}
+    $('#audioBtn').addEventListener('click',()=>{if(bgm.paused){bgm.play();musicStarted=true;muted=false;bgm.volume=.34;$('#audioBtn').textContent='♪';return}muted=!muted;bgm.volume=muted?0:.34;$('#audioBtn').textContent=muted?'×':'♪';$('#audioBtn').setAttribute('aria-label',muted?'Play music':'Mute music')});
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,introVideo=$('#introVideo'),introScreen=$('#introVideoScreen'),introStart=$('#introStart');
+    let introFinished=false;const finishIntro=()=>{if(introFinished)return;introFinished=true;startMusic();introScreen.classList.add('finishing');setTimeout(()=>show('formScreen'),reduced?40:520)};
+    introVideo.addEventListener('timeupdate',()=>{if(introVideo.duration&&introVideo.duration-introVideo.currentTime<.65)introScreen.classList.add('finishing')});
+    introVideo.addEventListener('ended',finishIntro);introVideo.addEventListener('error',finishIntro);
+    introStart.addEventListener('click',()=>{introStart.classList.add('hidden');bgm.volume=0;bgm.play().then(()=>{bgm.pause();bgm.currentTime=0}).catch(()=>{});introVideo.muted=false;introVideo.play().catch(()=>{introStart.classList.remove('hidden')})});
+    $('#detailsForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#nameInput').value.trim(),market=$('#marketInput').value;if(!name){$('#error').textContent='Please enter a name.';$('#nameInput').focus();return}if(!market){$('#error').textContent='Please choose a place.';$('#marketInput').focus();return}currentName=name;currentMarket=market;$('#error').textContent='';renderLetter();startMusic();show('envelopeScreen')});
+    let downY=null,moved=false,opened=false;const stage=$('#envelopeStage');const openEnvelope=()=>{if(opened)return;opened=true;stage.classList.add('opening');setTimeout(()=>show('letterScreen'),900)};
+    $('#seal').addEventListener('pointerdown',e=>{downY=e.clientY;moved=false;e.currentTarget.setPointerCapture(e.pointerId)});
+    $('#seal').addEventListener('pointermove',e=>{if(downY===null)return;const d=Math.min(70,Math.max(0,downY-e.clientY));moved=moved||d>5;stage.style.transform=`translateY(${-d*.18}px)`;if(d>42)openEnvelope()});
+    $('#seal').addEventListener('pointerup',()=>{stage.style.transform='';if(!moved)openEnvelope();downY=null});
+    $('#closeLetter').addEventListener('click',()=>{opened=false;stage.classList.remove('opening');show('envelopeScreen')});
+  </script>
+</body>
+</html>
